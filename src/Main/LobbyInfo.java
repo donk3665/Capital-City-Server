@@ -1,3 +1,5 @@
+package Main;
+
 public class LobbyInfo {
     //private int currNumPlayers;
     private int maxNumPlayers;
