@@ -6,5 +6,5 @@ RUN javac /src/Main/*.java  -d /app
 FROM openjdk:18
 COPY --from=builder /app /app
 WORKDIR /app
-EXPOSE 60000
+EXPOSE 10000
 CMD ["java", "Main.Main"]
