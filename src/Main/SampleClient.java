@@ -29,7 +29,7 @@ public class SampleClient {
 //            100.20.92.101
 //            44.225.181.72
 //            44.227.217.144
-            socket.socket().connect((new InetSocketAddress("https://capitalcity.onrender.com/", 60000)));
+            socket.socket().connect((new InetSocketAddress("capitalcity.onrender.com", 60000)));
 
            //PrintWriter out = new PrintWriter(socket.write(), true);
             int i = 0;

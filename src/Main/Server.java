@@ -29,7 +29,7 @@ public class Server {
         try {
             Selector selector = Selector.open();
             ServerSocketChannel serverSocket = ServerSocketChannel.open();
-            serverSocket.socket().bind(new InetSocketAddress(Integer.parseInt(System.getenv("PORT"))));
+            serverSocket.socket().bind(new InetSocketAddress(60000));
             serverSocket.configureBlocking(false);
             serverSocket.register(selector, SelectionKey.OP_ACCEPT);
 
