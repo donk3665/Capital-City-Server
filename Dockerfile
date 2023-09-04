@@ -7,4 +7,5 @@ FROM openjdk:18
 COPY --from=builder /app /app
 WORKDIR /app
 
+EXPOSE 60000
 CMD ["java", "Main.Main"]
