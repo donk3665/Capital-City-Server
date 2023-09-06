@@ -23,6 +23,7 @@ public class Server {
         playerHash = new HashMap<>();
         idSet = new HashMap<>();
         clientCounter = 0;
+        GameLobby.setServer(this);
     }
 
     public void run(){
@@ -70,7 +71,6 @@ public class Server {
                 lobbies.remove(keyLobby);
                 idSet.remove(keyLobby.getInfo().getLobbyID());
                 informAllListenersLobby(keyLobby);
-                //String message = "REMOVE " + keyLobby.getInfo().getLobbyID();
             }
         }
     }
@@ -95,6 +95,7 @@ public class Server {
                     informAllListenersLobby(lobby);
                 }
                 case "GET" -> {
+                    informPlayerMessage(player, "SENDING_LOBBIES");
                     player.setLobbySearch(true);
                     informListener(player);
                 }
@@ -170,20 +171,14 @@ public class Server {
         playerHash.put(client, player);
         client.configureBlocking(false);
         client.register(selector, SelectionKey.OP_READ);
+        client.write(ByteBuffer.wrap(("CONNECTED\r\n").getBytes()));
         System.out.println("Client " + clientCounter + " connected");
         clientCounter+=1;
     }
-//    public static void printMsg(SelectionKey key) throws IOException{
-//        ByteBuffer byteBuffer = ByteBuffer.allocate(256);
-//        SocketChannel client = (SocketChannel) key.channel();
-//        int numRead = client.read(byteBuffer);
-//        if (numRead ==-1){
-//            client.close();
-//            System.out.println("Client Disconnected!");
-//        }
-//        else {
-//            System.out.println(new String(byteBuffer.array()).trim());
-//        }
-//        byteBuffer.clear();
-//    }
+    public void removePlayer(ServerPlayer player){
+        clients.remove(player);
+    }
+    public void removeLobby(GameLobby lobby){
+        lobbies.remove(lobby);
+    }
 }

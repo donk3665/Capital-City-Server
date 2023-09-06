@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class GameLobby {
 
+    public static void setServer(Server server) {
+        GameLobby.server = server;
+    }
+
+    private static Server server;
     private ArrayList<ServerPlayer> clients;
     private LobbyInfo info;
     private InputOutputHandler handler;
@@ -53,7 +58,6 @@ public class GameLobby {
 
         sendClientInfo(player);
         informPlayersLobbyInfo();
-        //handler.sendMessageToClient(player, "CLIENT_INFO " + player.getName() + " " + player.getId());
         return true;
     }
     public void sendClientInfo(ServerPlayer player){
@@ -79,21 +83,24 @@ public class GameLobby {
             int id = player.getId();
             info.freeID(id);
             player.setId(-1);
+            reassignIDs(id);
+            player.removeLobby();
+            informPlayersLobbyInfo();
+            server.removePlayer(player);
             if (player.isHost()) {
                 kickPlayers();
-            } else {
-                reassignIDs(id);
-                player.removeLobby();
-                informPlayersLobbyInfo();
+                server.removeLobby(this);
             }
+
         }
     }
     private void kickPlayers(){
         String message = "KICK";
         handler.sendMessageToAll(message,clients);
         for (ServerPlayer player: clients){
-            clients.remove(player);
+            server.removePlayer(player);
             player.removeLobby();
         }
+        clients.clear();
     }
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CapitalCityServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CapitalCityServer_jar</output-path>
+    <root id="archive" name="CapitalCityServer.jar">
+      <element id="module-output" name="CapitalCityServer" />
+    </root>
+  </artifact>
+</component>

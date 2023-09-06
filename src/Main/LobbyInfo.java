@@ -1,7 +1,6 @@
 package Main;
 
 public class LobbyInfo {
-    //private int currNumPlayers;
     private int maxNumPlayers;
     private int numOfRounds;
     public String gameMode;
@@ -40,9 +39,7 @@ public class LobbyInfo {
     public boolean isActive() {
         return active;
     }
-    //public int getCurrNumPlayers() {
-  //      return currNumPlayers;
-   // }
+
 
     public int getNumOfRounds() {
         return numOfRounds;

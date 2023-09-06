@@ -32,8 +32,9 @@ public class LobbyInputOutputHandler extends InputOutputHandler {
             }
             case "DISCONNECT" ->{
                 player.getLobby().removePlayer(player);
+                sendMessageToClient(player, "DISCONNECT");
             }
-            case "LOAD_DATA", "STATES", "CHANGE_PLAYER","INFO:","SWAP", "INIT_AUCTION", "AUCTION", "BUILD", "MORTGAGE", "UN-MORTGAGE", "COMPLETE","BANKRUPTCY" ->{
+            case "LOAD_DATA", "STATES", "CHANGE_PLAYER","INFO:","SWAP", "INIT_AUCTION", "AUCTION", "BUILD", "MORTGAGE", "UN-MORTGAGE", "COMPLETE","BANKRUPTCY", "STEAL" ->{
                 sendMessageToAllButClient(message, clients, player);
             }
             case "INITIALIZE_GAME"->{
