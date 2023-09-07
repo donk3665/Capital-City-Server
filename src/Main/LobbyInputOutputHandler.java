@@ -48,7 +48,7 @@ public class LobbyInputOutputHandler extends InputOutputHandler {
                 }
             }
             case "CAN_START?" ->{
-                if (player.getLobby().isReady()){
+                if (player.getLobby().isReady() && player.getLobby().getNumPlayers() == player.getLobby().getInfo().getMaxNumPlayers()){
                     sendMessageToClient(player, "BEGIN_SEQUENCE");
                 }
                 else {
