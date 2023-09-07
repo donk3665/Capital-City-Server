@@ -24,11 +24,11 @@ public class LobbyInputOutputHandler extends InputOutputHandler {
 
         switch (splitMessage[0]) {
             case "TEXT_MESSAGE" -> {
-                splitMessage = message.split("¶");
+                splitMessage = message.split("#1839673858#");
                 String chatText = splitMessage[1];
                 String writerIndex = splitMessage[2];
                 String writerName = splitMessage[3];
-                sendMessageToAllButClient("RECEIVE_TEXT ¶" + chatText + "¶" + writerIndex + "¶" + writerName, clients, player);
+                sendMessageToAllButClient("RECEIVE_TEXT #1839673858#" + chatText + "#1839673858#" + writerIndex + "#1839673858#" + writerName, clients, player);
             }
             case "DISCONNECT" ->{
                 player.getLobby().removePlayer(player);
